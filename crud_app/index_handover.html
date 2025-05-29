@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>t_handover Data Management</title>
+    <link rel="stylesheet" href="assets\css\style_handover.css">
+</head>
+<body>
+    <div class="container">
+        <h1>"t_handover" Table Data Management</h1>
+
+        <button id="toggleFormBtn">Show/Hide Form</button>
+
+        <form id="cobaForm" style="display:none;">
+            <input type="hidden" id="s_customer_key_for_edit" name="s_customer_key_for_edit">
+            <fieldset>
+                <legend>Basic & Company Information</legend>
+                <div><label for="s_customer">Customer ID (PK):</label><input type="text" id="s_customer" name="s_customer" maxlength="7" required></div>
+                <div><label for="id_tkc_cd">CD Involved:</label><input type="text" id="id_tkc_cd" name="id_tkc_cd" maxlength="9"></div>
+                <div><label for="s_name">Participant Company Name:</label><input type="text" id="s_name" name="s_name" maxlength="100" required></div>
+                <div><label for="s_address">Participant Address:</label><textarea id="s_address" name="s_address" maxlength="255" required></textarea></div>
+                <div><label for="s_type">Client Industry/Business Type:</label><input type="text" id="s_type" name="s_type" maxlength="100" required></div>
+                <div><label for="dt_from">Business Start Year:</label><input type="date" id="dt_from" name="dt_from" required></div>
+                <div><label for="dt_to">Ending Fiscal Year:</label><input type="date" id="dt_to" name="dt_to" required></div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Compensation & Remuneration</legend>
+                <div><label for="n_advisory_fee">Compensation Consultant Materials:</label><input type="number" id="n_advisory_fee" name="n_advisory_fee" value="0" required></div>
+                <div><label for="n_account_closing_fee">Remuneration Settlement Fee:</label><input type="number" id="n_account_closing_fee" name="n_account_closing_fee" value="0" required></div>
+                <div><label for="n_others_fee">Rewards Other:</label><input type="number" id="n_others_fee" name="n_others_fee"></div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Representative Information</legend>
+                <div><label for="s_rep_name">Representative Name:</label><input type="text" id="s_rep_name" name="s_rep_name" maxlength="50" required></div>
+                <div><label for="s_rep_personal">Representative's Personality, Character, etc.:</label><textarea id="s_rep_personal" name="s_rep_personal" required></textarea></div>
+                <div><label for="s_rep_partner_name">Spouse's Name:</label><input type="text" id="s_rep_partner_name" name="s_rep_partner_name" maxlength="50"></div>
+                <div><label for="s_rep_partner_personal">Spouse's Personality, Character, etc.:</label><textarea id="s_rep_partner_personal" name="s_rep_partner_personal"></textarea></div>
+                <div><label for="s_rep_others_name">Other Name:</label><input type="text" id="s_rep_others_name" name="s_rep_others_name" maxlength="50"></div>
+                <div><label for="s_rep_others_personal">Other Personality Traits, Character, etc.:</label><textarea id="s_rep_others_personal" name="s_rep_others_personal"></textarea></div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Contact</legend>
+                <div><label for="s_corp_tel">Company TEL:</label><input type="text" id="s_corp_tel" name="s_corp_tel" maxlength="13" required></div>
+                <div><label for="s_corp_fax">Company FAX:</label><input type="text" id="s_corp_fax" name="s_corp_fax" maxlength="12"></div>
+                <div><label for="s_rep_tel">Representative TEL:</label><input type="text" id="s_rep_tel" name="s_rep_tel" maxlength="13"></div>
+                <div><label for="s_rep_email">Representative Email:</label><input type="email" id="s_rep_email" name="s_rep_email" maxlength="255"></div>
+                <div><label for="s_rep_contact">Contact Details:</label><textarea id="s_rep_contact" name="s_rep_contact" maxlength="255"></textarea></div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Billing Information</legend>
+                <div><label for="n_recovery">Collection Method (1/0):</label><input type="checkbox" id="n_recovery" name="n_recovery"></div>
+                <div><label for="n_advisory_yet">Uncollected Advisory Fee:</label><input type="number" id="n_advisory_yet" name="n_advisory_yet"></div>
+                <div><label for="n_account_closing_yet">Uncollected Settlement Fee:</label><input type="number" id="n_account_closing_yet" name="n_account_closing_yet"></div>
+                <div><label for="n_others_yet">Uncollected Other:</label><input type="number" id="n_others_yet" name="n_others_yet"></div>
+                <div><label for="dt_recovery">Scheduled Collection Date:</label><input type="date" id="dt_recovery" name="dt_recovery"></div>
+                <div><label for="s_recover_reason">Reason for Non-recovery:</label><textarea id="s_recover_reason" name="s_recover_reason" maxlength="255"></textarea></div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Audit Information</legend>
+                <div><label for="dt_completed">Audit Completion Date:</label><input type="date" id="dt_completed" name="dt_completed" required></div>
+                <div><label for="n_place">Audit Location (1/0):</label><input type="checkbox" id="n_place" name="n_place" required></div>
+                <div><label for="s_place_others">Audit Location Other:</label><input type="text" id="s_place_others" name="s_place_others" maxlength="100"></div>
+                <div><label for="s_convenient">Convenient Date and Time:</label><input type="text" id="s_convenient" name="s_convenient" maxlength="255" required></div>
+                <div><label for="s_required_time">Travel Time:</label><input type="text" id="s_required_time" name="s_required_time" maxlength="100" required></div>
+                <div><label for="s_affiliated_company">Affiliated Companies:</label><textarea id="s_affiliated_company" name="s_affiliated_company" maxlength="255"></textarea></div>
+                <div><label for="s_heeding_audit">Points to note when auditing:</label><textarea id="s_heeding_audit" name="s_heeding_audit" required></textarea></div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Tax & Reporting Information</legend>
+                <div><label for="n_interim_return">Planned/Interim Filing (1/0):</label><input type="checkbox" id="n_interim_return" name="n_interim_return" required></div>
+                <div><label for="n_consumption_tax">Consumption Tax Notification (1/0):</label><input type="checkbox" id="n_consumption_tax" name="n_consumption_tax" required></div>
+                <div><label for="s_heeding_settlement">Important points for settling accounts:</label><textarea id="s_heeding_settlement" name="s_heeding_settlement" required></textarea></div>
+                <div><label for="dt_last_tax_audit">Last Tax Audit Date:</label><input type="date" id="dt_last_tax_audit" name="dt_last_tax_audit"></div>
+                <div><label for="s_tax_audit_memo">Tax Audit Special Notes:</label><textarea id="s_tax_audit_memo" name="s_tax_audit_memo"></textarea></div>
+                <div><label for="n_exemption_for_dependents">Dependent Deduction Form Available (1/0):</label><input type="checkbox" id="n_exemption_for_dependents" name="n_exemption_for_dependents"></div>
+                <div><label for="s_exemption_for_dependents">Notes on Dependent Deduction Form:</label><input type="text" id="s_exemption_for_dependents" name="s_exemption_for_dependents" maxlength="255"></div>
+                <div><label for="n_last_year_end_adjustment">Year-end Adjustment Previous Year (1/0):</label><input type="checkbox" id="n_last_year_end_adjustment" name="n_last_year_end_adjustment"></div>
+                <div><label for="s_last_year_end_adjustment">Preparation for Year-end Adjustment Previous Year:</label><input type="text" id="s_last_year_end_adjustment" name="s_last_year_end_adjustment" maxlength="255"></div>
+                <div><label for="n_payroll_report">Salary Payment Report Availability (1/0):</label><input type="checkbox" id="n_payroll_report" name="n_payroll_report"></div>
+                <div><label for="s_payroll_report">Payroll Report Notes:</label><input type="text" id="s_payroll_report" name="s_payroll_report" maxlength="255"></div>
+                <div><label for="n_legal_report">Legal Record Summary Table Availability (1/0):</label><input type="checkbox" id="n_legal_report" name="n_legal_report"></div>
+                <div><label for="s_legal_report">Legal Report Summary Table Notes:</label><input type="text" id="s_legal_report" name="s_legal_report" maxlength="255"></div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Miscellaneous & Exceptions</legend>
+                <div><label for="n_deadline_exceptions">Special Delivery Deadlines (1/0):</label><input type="checkbox" id="n_deadline_exceptions" name="n_deadline_exceptions"></div>
+                <div><label for="s_deadline_exceptions">Special Notes Regarding Delivery Time:</label><input type="text" id="s_deadline_exceptions" name="s_deadline_exceptions" maxlength="255"></div>
+                <div><label for="s_late_payment">Late Payment Notes:</label><input type="text" id="s_late_payment" name="s_late_payment" maxlength="255"></div>
+                <div><label for="n_depreciable_assets_tax">Depreciable Property Tax (1/0):</label><input type="checkbox" id="n_depreciable_assets_tax" name="n_depreciable_assets_tax"></div>
+                <div><label for="s_depreciable_assets_tax">Depreciable Assets Tax Notes:</label><input type="text" id="s_depreciable_assets_tax" name="s_depreciable_assets_tax" maxlength="255"></div>
+                <div><label for="n_final_tax_return">Directors File Tax Returns (1/0):</label><input type="checkbox" id="n_final_tax_return" name="n_final_tax_return"></div>
+                <div><label for="s_final_tax_return">Notes for Filing Tax Returns for Officers:</label><input type="text" id="s_final_tax_return" name="s_final_tax_return" maxlength="255"></div>
+                <div><label for="s_taxpayer_name">Taxpayer Name:</label><input type="text" id="s_taxpayer_name" name="s_taxpayer_name" maxlength="50"></div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Insurance & Status</legend>
+                <div><label for="n_health_insurance">Health Insurance (1/0):</label><input type="checkbox" id="n_health_insurance" name="n_health_insurance"></div>
+                <div><label for="n_employment_insurance">Employment Insurance (1/0):</label><input type="checkbox" id="n_employment_insurance" name="n_employment_insurance"></div>
+                <div><label for="n_workers_accident_insurance">Workers' Accident Compensation Insurance (1/0):</label><input type="checkbox" id="n_workers_accident_insurance" name="n_workers_accident_insurance"></div>
+                <div><label for="n_late_payment_status">Late Payment Status (1/0):</label><input type="checkbox" id="n_late_payment_status" name="n_late_payment"></div>
+                <div><label for="n_greetings_method">Handover Greetings Method (1/0):</label><input type="checkbox" id="n_greetings_method" name="n_greetings_method"></div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Additional Notes & Handover</legend>
+                <div><label for="s_special_notes">Questions, Complaints, Requests, etc.:</label><textarea id="s_special_notes" name="s_special_notes"></textarea></div>
+                <div><label for="s_other_notes">Other Matters to be Handed Over:</label><textarea id="s_other_notes" name="s_other_notes" required></textarea></div>
+                <div><label for="s_predecessor">Predecessor ID:</label><input type="text" id="s_predecessor" name="s_predecessor" maxlength="4" required></div>
+                <div><label for="s_superior">Department Head ID:</label><input type="text" id="s_superior" name="s_superior" maxlength="4" required></div>
+                <div><label for="dt_submitted">Date and Time of Submission:</label><input type="datetime-local" id="dt_submitted" name="dt_submitted"></div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Approval</legend>
+                <div><label for="dt_approved">Date Approved (Dept Head):</label><input type="datetime-local" id="dt_approved" name="dt_approved"></div>
+                <div><label for="s_approved">Comment (Dept Head):</label><input type="text" id="s_approved" name="s_approved" maxlength="255"></div>
+                <div><label for="dt_approved_1">Date Approved (Manager):</label><input type="datetime-local" id="dt_approved_1" name="dt_approved_1"></div>
+                <div><label for="s_approved_1">Comment (Manager):</label><input type="text" id="s_approved_1" name="s_approved_1" maxlength="255"></div>
+                <div><label for="dt_approved_2">Date Approved (Director):</label><input type="datetime-local" id="dt_approved_2" name="dt_approved_2"></div>
+                <div><label for="s_approved_2">Comment (Director):</label><input type="text" id="s_approved_2" name="s_approved_2" maxlength="255"></div>
+                <div><label for="dt_approved_3">Date Approved (Managing Director):</label><input type="datetime-local" id="dt_approved_3" name="dt_approved_3"></div>
+                <div><label for="s_approved_3">Comment (Managing Director):</label><input type="text" id="s_approved_3" name="s_approved_3" maxlength="255"></div>
+                <div><label for="dt_approved_4">Date Approved (Managing Director 2):</label><input type="datetime-local" id="dt_approved_4" name="dt_approved_4"></div>
+                <div><label for="s_approved_4">Comment (Managing Director 2):</label><input type="text" id="s_approved_4" name="s_approved_4" maxlength="255"></div>
+                <div><label for="dt_approved_5">Date Approved (President):</label><input type="datetime-local" id="dt_approved_5" name="dt_approved_5"></div>
+                <div><label for="s_approved_5">Comment (President):</label><input type="text" id="s_approved_5" name="s_approved_5" maxlength="255"></div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Confirmation & Rejection</legend>
+                <div><label for="dt_checked">General Affairs Confirmation Date:</label><input type="datetime-local" id="dt_checked" name="dt_checked"></div>
+                <div><label for="s_checked">General Affairs Comment:</label><input type="text" id="s_checked" name="s_checked" maxlength="255"></div>
+                <div><label for="dt_denied">Deny Date and Time:</label><input type="datetime-local" id="dt_denied" name="dt_denied"></div>
+                <div><label for="s_in_charge">Successor ID:</label><input type="text" id="s_in_charge" name="s_in_charge" maxlength="4"></div>
+            </fieldset>
+
+            <div class="form-actions">
+                <button type="submit" id="submitBtn">Add New</button>
+                <button type="button" id="cancelBtn">Cancel</button>
+            </div>
+        </form>
+
+        <h2>Saved Data</h2>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>Company Name</th>
+                    <th>Business Type</th>
+                    <th>Submitted</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+
+    <script src="assets\js\script_handover.js"></script>
+</body>
+</html>

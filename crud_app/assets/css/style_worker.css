@@ -1,0 +1,21 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.modal {
+    transition: opacity 0.25s ease;
+}
+
+.modal-active {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.modal-content {
+    transition: transform 0.25s ease;
+}
+
+/* Ensure date input text is visible */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.5); /* Adjust if needed for better visibility with your theme */
+}

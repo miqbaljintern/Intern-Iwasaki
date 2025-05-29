@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style_worker.css">
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl sm:text-4xl font-bold text-blue-600">Employee Data Management</h1>
+        </header>
+
+        <div class="mb-6 text-right">
+            <button id="addWorkerBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-150 ease-in-out">
+                Add New Employee
+            </button>
+        </div>
+
+        <div id="notification" class="hidden p-4 mb-4 text-sm rounded-lg" role="alert">
+            <span class="font-medium" id="notificationMessage"></span>
+        </div>
+
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="min-w-full leading-normal">
+                    <thead class="bg-gray-800 text-white">
+                        <tr>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs sm:text-sm font-semibold uppercase tracking-wider">Employee ID</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs sm:text-sm font-semibold uppercase tracking-wider">Employee Name</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs sm:text-sm font-semibold uppercase tracking-wider">Company Name</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs sm:text-sm font-semibold uppercase tracking-wider">Department</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs sm:text-sm font-semibold uppercase tracking-wider">Start Date</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs sm:text-sm font-semibold uppercase tracking-wider">End Date</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs sm:text-sm font-semibold uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="workerTableBody" class="text-gray-700">
+                        <tr>
+                            <td colspan="7" class="text-center p-5 text-gray-500">Loading data...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="workerModal" class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center z-50 hidden">
+        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+
+        <div class="modal-content bg-white w-11/12 md:max-w-lg mx-auto rounded-xl shadow-lg z-50 overflow-y-auto transform transition-all scale-95 opacity-0">
+            <div class="flex justify-between items-center bg-blue-500 text-white p-4 rounded-t-xl">
+                <h3 id="modalTitle" class="text-xl font-semibold">Add Employee</h3>
+                <button id="closeModalBtn" class="text-white hover:text-gray-300 text-2xl">&times;</button>
+            </div>
+
+            <form id="workerForm" class="p-6 space-y-4">
+                <input type="hidden" id="workerIdKey" name="workerIdKey"> <div>
+                    <label for="s_worker" class="block text-sm font-medium text-gray-700 mb-1">Employee ID (s_worker) <span class="text-red-500">*</span></label>
+                    <input type="text" name="s_worker" id="s_worker" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required maxlength="4">
+                    <p class="text-xs text-gray-500 mt-1">Must be unique, maximum 4 characters.</p>
+                </div>
+                <div>
+                    <label for="user_name" class="block text-sm font-medium text-gray-700 mb-1">Employee Name (user_name) <span class="text-red-500">*</span></label>
+                    <input type="text" name="user_name" id="user_name" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required maxlength="20">
+                    <p class="text-xs text-gray-500 mt-1">Required, maximum 20 characters.</p>
+                </div>
+                <div>
+                    <label for="s_corp_name" class="block text-sm font-medium text-gray-700 mb-1">Company Name (s_corp_name)</label>
+                    <input type="text" name="s_corp_name" id="s_corp_name" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" maxlength="100">
+                    <p class="text-xs text-gray-500 mt-1">Optional, maximum 100 characters.</p>
+                </div>
+                <div>
+                    <label for="s_department" class="block text-sm font-medium text-gray-700 mb-1">Department Name (s_department)</label>
+                    <input type="text" name="s_department" id="s_department" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" maxlength="100">
+                    <p class="text-xs text-gray-500 mt-1">Optional, maximum 100 characters.</p>
+                </div>
+                <div>
+                    <label for="dt_start" class="block text-sm font-medium text-gray-700 mb-1">Applicable Start Date (dt_start)</label>
+                    <input type="date" name="dt_start" id="dt_start" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <p class="text-xs text-gray-500 mt-1">Optional.</p>
+                </div>
+                <div>
+                    <label for="dt_end" class="block text-sm font-medium text-gray-700 mb-1">End of Application Date (dt_end)</label>
+                    <input type="date" name="dt_end" id="dt_end" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <p class="text-xs text-gray-500 mt-1">Optional.</p>
+                </div>
+
+                <div class="pt-4 flex justify-end space-x-3">
+                    <button type="button" id="cancelModalBtn" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition duration-150">Cancel</button>
+                    <button type="submit" id="saveWorkerBtn" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-150">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/script_worker.js"></script>
+</body>
+</html>
